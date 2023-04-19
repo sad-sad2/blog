@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% load static %}
+<!-- Hero Section -->
+{% block 'title' %} Home {% endblock %}
+<!-- Hero Section -->
+{% block 'content' %}
+<section class="bg-gray-800 py-12">
+  <div class="container mx-auto px-4">
+    <div class="md:flex md:items-center md:justify-between">
+      <div class="md:w-1/2">
+        <h2 class="text-4xl font-bold leading-tight text-white">
+          Welcome to ITify
+        </h2>
+        <p class="text-gray-400 mt-4 text-lg">
+          Here, you'll find informative articles, helpful tips, and engaging
+          content about a variety of topics, including technology, lifestyle,
+          and business. Whether you're looking for inspiration, education, or
+          entertainment, you'll find it all here. So, come along and explore the
+          world of my blog!
+        </p>
+        <div class="mt-8">
+          <a
+            href="signup/"
+            class="bg-white py-2 px-4 text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-100 mr-2"
+            >Get Started</a
+          >
+        </div>
+      </div>
+      <div class="mt-8 md:mt-0 md:w-1/2">
+        <img
+          class="w-full h-64 object-cover object-center rounded-lg"
+          src="{% static '/img/hero.png' %}"
+          alt="Blog Image"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Posts Section -->
+<section class="py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-4">Recent Posts</h2>
+    <div class="flex flex-wrap -mx-4">
+      <!-- Post 1 -->
+      {% for post in posts %}
+      <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img
+            src="{{post.image.url}}"
+            alt="Post Image"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-bold mb-2">
+              <a href="#">{{post.title}}</a>
+            </h3>
+            <p class="text-gray-700 text-sm">
+              {{post.content|safe|slice:":200"}}...
+              <a class="font-bold text-gray-700" href="/blog-detail/{{post.id}}"
+                >Read The Blog</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

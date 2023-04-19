@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block 'title' %} {% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <!-- Navigation -->
+    <nav
+      class="navbar flex items-center justify-between flex-wrap bg-gray-900 text-white p-6 shadow"
+    >
+      <div class="navbar-logo text-2xl font-bold text-blue-400">ITify</div>
+      <div class="block lg:hidden">
+        <button
+          id="navbar-toggle"
+          class="flex items-center px-3 py-2 border rounded text-white border-white hover:text-gray-900 hover:bg-white"
+        >
+          <svg
+            class="fill-current h-3 w-3"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Menu</title>
+            <path d="M0 3h20v2H0zm0 6h20v2H0zm0 6h20v2H0z" />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="navbar-links hidden w-full lg:flex lg:items-center lg:w-auto"
+        id="navbar-menu"
+      >
+        {% if request.user.id %}
+        <div class="text-sm lg:flex-grow">
+          <a
+            href="/list-blogs/"
+            class="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200 mr-4"
+          >
+            My Blogs
+          </a>
+          <a
+            href="/create-blog/"
+            class="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200 mr-4"
+          >
+            New Blog
+          </a>
+          <a
+            href="/settings/"
+            class="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200 mr-4"
+          >
+            Settings
+          </a>
+        </div>
+
+        <div>
+          <a
+            href="/logout/"
+            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white-300 border-whihte-300 hover:text-white hover:bg-gray-600 mt-4 lg:mt-0"
+          >
+            Logout
+          </a>
+        </div>
+        {% else %}
+        <div class="text-sm lg:flex-grow">
+          <a
+            href="/"
+            class="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200 mr-4"
+          >
+            Home
+          </a>
+          <a
+            href="/about/"
+            class="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200 mr-4"
+          >
+            About Me
+          </a>
+        </div>
+
+        <div>
+          <a
+            href="/login/"
+            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white-300 border-whihte-300 hover:text-white hover:bg-gray-600 mt-4 lg:mt-0"
+          >
+            Login
+          </a>
+          <a
+            href="/signup/"
+            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white bg-gray-600 hover:bg-gray-700 mt-4 lg:mt-0"
+          >
+            Sign Up
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </nav>
+    <div class="flex flex-col min-h-screen">
+      <main class="flex-grow">{% block 'content' %} {% endblock %}</main>
+
+      <!-- Footer Section -->
+      <footer class="bg-gray-800 text-white py-8 flex-shrink-0">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-col lg:flex-row justify-between">
+            <!-- Logo -->
+            <div class="mb-4 lg:mb-0">
+              <div class="navbar-logo text-2xl font-bold text-blue-400">
+                ITify
+              </div>
+            </div>
+            <!-- Navigation -->
+            <div class="flex flex-col lg:flex-row">
+              <a href="/" class="lg:ml-12 mb-4 lg:mb-0">Home</a>
+              <a href="/about/" class="lg:ml-12 mb-4 lg:mb-0">About Me</a>
+              {% if request.user.id %}
+              <a href="/list-blogs/" class="lg:ml-12 mb-4 lg:mb-0">My Blogs</a>
+              <a href="/create-blog/" class="lg:ml-12 mb-4 lg:mb-0">New Blog</a>
+              <a href="/settings/" class="lg:ml-12 mb-4 lg:mb-0">Settings</a>
+              <a href="/logout/" class="lg:ml-12 mb-4 lg:mb-0">Logout</a>
+              {% else %}
+              <a href="/login/" class="lg:ml-12 mb-4 lg:mb-0">Login</a>
+              <a href="/signup/" class="lg:ml-12 mb-4 lg:mb-0">Sign Up</a>
+              {% endif %}
+            </div>
+          </div>
+          <hr class="border-gray-700 my-8" />
+          <div class="text-sm">
+            <p>&copy; 2023 ITify. All rights reserved.</p>
+            <p>Designed by Saadaoui Salah</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- JavaScript -->
+    <script>
+      // Navbar toggle button
+      const navbarToggle = document.getElementById("navbar-toggle");
+      const navbarMenu = document.getElementById("navbar-menu");
+
+      navbarToggle.addEventListener("click", () => {
+        navbarMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

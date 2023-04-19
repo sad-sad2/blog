@@ -1,0 +1,1 @@
+sudo nmap -PR 192.168.1.106/24 -sn  ===> find connected devices

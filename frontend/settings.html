@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+<!--- Main content ---->
+{% load static %}
+<!--- Main content ---->
+{% block 'title' %}Settings{% endblock %}
+<!--- Main content ---->
+{% block 'content' %}
+<div class="container mx-auto mt-8 px-4">
+  <h1 class="text-3xl font-bold text-gray-800 mb-4">Settings</h1>
+  <div class="flex justify-center">
+    <div class="w-full md:w-2/3 lg:w-1/2">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Change Password</h2>
+      <form
+        method="post"
+        class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8"
+      >
+        {% csrf_token %}
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="old_password"
+            >Current Password</label
+          >
+          <input
+            type="password"
+            id="old_password"
+            name="old_password"
+            placeholder="Enter current password"
+            class="w-full py-2 px-3 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="new_password1"
+            >New Password</label
+          >
+          <input
+            type="password"
+            id="new_password1"
+            name="new_password1"
+            placeholder="Enter new password"
+            class="w-full py-2 px-3 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 font-bold mb-2" for="new_password2"
+            >Confirm Password</label
+          >
+          <input
+            type="password"
+            id="new_password2"
+            name="new_password2"
+            placeholder="Confirm new password"
+            class="w-full py-2 px-3 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div class="flex justify-end">
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Save Changes
+          </button>
+          <a
+            href="/list-blogs/"
+            class="bg-red-500 cursor-pointer hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
+          >
+            Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<span class="hidden" id="error">{{error}}</span>
+<script src="{% static 'js/pushErrors.js' %}"></script>
+{% endblock %}

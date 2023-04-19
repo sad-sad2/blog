@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+<!--- Main content ---->
+{% load static %}
+<!--- Main content ---->
+{% block 'title' %}Profile - Create Blog{% endblock %}
+<!--- Main content ---->
+{% block 'content' %}
+<div class="container mx-auto my-8">
+  <h1 class="text-3xl font-bold mb-4">Create Blog Post</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-4">
+      <label for="title" class="block text-gray-700 font-bold mb-2"
+        >Title</label
+      >
+      <input
+        type="text"
+        name="title"
+        id="title"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="content" class="block text-gray-700 font-bold mb-2"
+        >Content</label
+      >
+      <textarea
+        name="content"
+        id="content"
+        rows="10"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required
+      ></textarea>
+    </div>
+    <div class="mb-4">
+      <label for="image" class="block text-gray-700 font-bold mb-2"
+        >Image</label
+      >
+      <div id="dropzone" class="border border-gray-400 rounded p-4">
+        <p class="text-gray-600">
+          Drag and drop your image here or click to select a file.
+        </p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <button
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        Create Post
+      </button>
+      <a
+        href="/list-blogs/"
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+        >Cancel</a
+      >
+    </div>
+    <span class="hidden" id="error">{{error}}</span>
+  </form>
+</div>
+<script src="{% static 'js/pushErrors.js' %}"></script>
+<script src="{% static 'js/dragAndDrop.js' %}"></script>
+{% endblock %}
